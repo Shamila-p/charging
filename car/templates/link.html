@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'resources/css/link.css'%}">
+
+</head>
+<body>
+    <div class="container">
+        <img src="{% static 'resources/images/car-image.jpg'%}" alt="Car Image">
+        <form method ='post'>
+            {%csrf_token%}
+          <label for="car-id">Enter your car ID:</label>
+          <input type="text" id="car-id" name="car_id" placeholder="e.g. ABC-123">
+          <button type="submit" name="link">Link</button>
+        </form>
+      </div>
+      
+</body>
+</html>

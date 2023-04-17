@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static%}
+<head>
+  <meta charset="UTF-8">
+  <title>LOGIN</title>
+  <link rel="stylesheet" href="{% static 'resources/css/signup.css'%}">
+</head>
+<body>
+  <div class="container">
+    <h2>Signup Form</h2>
+    <form method="post">
+        {%csrf_token%}
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit">Login</button>
+      <p style="color:white ;margin-left:auto">If you are not registered yet <a class="txt2"  href="/signup"> <b>Click here</b></a> here</p>
+        
+    </form>
+  </div>
+  <div class="bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+</body>
+</html>

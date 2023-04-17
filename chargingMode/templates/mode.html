@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>charging Mode Information</title>
+    <style>
+        /* Add your styles here */
+    </style>
+</head>
+<body>
+    <div id="battery-info">
+        <p> Mode of charging: <span id="charging-mode">{{ charging_mode }}</span></p>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var car_id = car_id 
+        
+            function updateMode() {
+                $.getJSON('/charging-mode-details/' + car_id , function(data) {
+                    $('#charging-mode').text(data.mode );
+                });
+        
+                setTimeout(updateMode, 1000); 
+            }
+        
+            updateMode();
+        });
+    </script>
+</body>
+</html>

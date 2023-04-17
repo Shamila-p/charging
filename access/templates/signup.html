@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static%}
+<head>
+  <meta charset="UTF-8">
+  <title>Signup Form</title>
+  <link rel="stylesheet" href="{% static 'resources/css/signup.css'%}">
+</head>
+<body>
+  <div class="container">
+    <h2>Signup Form</h2>
+    <form method="post">
+        {%csrf_token%}
+        {%for message in messages%}
+        <div class="alert alert-danger" >
+            <span> {{message}}</span>
+        </div>
+        {%endfor%}
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password1" required>
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="password2" required>
+      </div>
+      <button type="submit">Submit</button>
+      <p style="color:white ;margin-left:auto">If you are already registered please <a class="txt2"  href="/login"> <b>Login</b></a> here</p>
+        
+    </form>
+  </div>
+  <div class="bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+</body>
+</html>

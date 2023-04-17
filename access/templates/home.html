@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Circles Page</title>
+  <style>
+    body {
+      background-color: black;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: white;
+    }
+    
+    .circles-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: gray;
+      margin: 0 10px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .circle:first-child {
+      margin-left: -80px; /* add negative margin to the left of the first circle */
+    }
+    
+    .circle:last-child {
+      margin-right: -80px; /* add negative margin to the right of the last circle */
+    }
+    
+    .text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+    }
+    
+    .text h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    
+    .text p {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    
+    .logout {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="circles-container">
+    <div class="circle">
+      <div class="text">
+        <h1><a href="/battery-details/{{car_id}}">Battery Status</a></h1>
+      </div>
+    </div>
+    <div class="circle">
+      <div class="text">
+        <h1><a href="/charging-mode-details/{{car_id}}">Mode of Charging</a></h1>
+      </div>
+    </div>
+    <div class="circle">
+      <div class="text">
+        <h1><a href="">Regeneration Graph</a></h1>
+      </div>
+    </div>
+  </div>
+  
+  <a href="#" class="logout">Logout</a>
+</body>
+</html>
