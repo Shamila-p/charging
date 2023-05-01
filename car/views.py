@@ -19,3 +19,10 @@ def link_car(request):
         car.is_linked = True
         car.save()
         return redirect('home')
+def unlink_car(request):
+    if request.method == 'POST':
+        car = Car.objects.get(user_id=request.user.id)
+        car.car_id = None
+        car.is_linked =False
+        car.save()
+        return redirect('link_car')

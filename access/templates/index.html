@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Black Background with 3D Bubbles</title>
+    <style>
+		body {
+			background-color: black;
+		}
+
+		h1 {
+			color: white;
+			font-size: 6em;
+			text-align: center;
+			margin-top: 30vh;
+			text-shadow: 2px 2px 4px grey;
+		}
+
+		.button {
+			display: block;
+			margin: 0 auto;
+			margin-top: 50px;
+			padding: 15px 25px;
+			border-radius: 50px;
+			background-color: #8dd3f6;
+			color: white;
+			font-size: 1.5em;
+			text-align: center;
+			text-decoration: none;
+			box-shadow: 0px 5px 10px grey;
+			width: 150px;
+			transition: transform 0.2s ease-in-out;
+		}
+
+		.button:hover {
+			transform: scale(1.1);
+			background-color: #0099cc;
+			cursor: pointer;
+		}
+
+		.bubble {
+			position: absolute;
+			width: 80px;
+			height: 80px;
+            background-image: linear-gradient(black, #e6e6e6);
+			border-radius: 50%;
+			opacity: 0.7;
+			box-shadow: 0px 5px 15px grey;
+			transform: translateZ(-100px);
+			animation: float 6s ease-in-out infinite;
+		}
+
+		.bubble:nth-child(1) {
+			top: 100px;
+			left: 50%;
+			margin-left: -40px;
+			animation-delay: 0s;
+			background-image: linear-gradient(black, #e6e6e6);
+		}
+
+		.bubble:nth-child(2) {
+			top: 200px;
+			left: 10%;
+			animation-delay: 1s;
+			background-image: linear-gradient(black, #e6e6e6);
+		}
+
+		.bubble:nth-child(3) {
+			top: 300px;
+			left: 90%;
+			animation-delay: 2s;
+			background-image: linear-gradient(#312f2f, white);
+		}
+
+		.bubble:nth-child(4) {
+			top: 400px;
+			left: 30%;
+			animation-delay: 3s;
+			background-image: linear-gradient(black, #e6e6e6);
+		}
+
+		.bubble:nth-child(5) {
+			top: 500px;
+			left: 70%;
+			animation-delay: 4s;
+			background-image: linear-gradient(#151515, #e6e6e6);
+		}
+
+		@keyframes float {
+			0% {
+				transform: translateZ(-100px) translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+			}
+			50% {
+				transform: translateZ(-50px) translateY(100px) rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+			}
+			100% {
+				transform: translateZ(-100px) translateY(0px) rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<h1>Welcome</h1>
+	<a href="/login" class="button">Click Here</a>
+	<div class="bubble"></div>
+	<div class="bubble"></div>
+	<div class="bubble"></div>
+	<div class="bubble"></div>
+	<div class="bubble"></div>
+</body>
+</html>

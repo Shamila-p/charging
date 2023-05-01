@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Range and speed Information</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .card {
+            border-radius: 4px;
+            padding: 35px;
+            margin: 10px;
+            width: 200px;
+            display: inline-block;
+            background-color: #2c2c2c;
+            box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+            transition: transform 0.3s ease-in-out;
+            transform-style: preserve-3d;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            font-weight: bold;
+            color: silver;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 25px;
+        }
+        
+        .card-body {
+            margin-bottom: 5px;
+            text-align: center;
+            color: white;
+            font-size: 17px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Range</div>
+            <div class="card-body" id="range">{{ range }} km</div>
+        </div>
+        <div class="card">
+            <div class="card-header">Speed</div>
+            <div class="card-body" id="speed">{{ speed }} kmph</div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var car_id = "{{car_id }}"
+            
+            function updateMode() {
+                $.getJSON('/range-speed/' + car_id , function(data) {
+                    $('#range').text(data.range +' km');
+                    $('#speed').text(data.speed +' kmph');
+                });
+                
+                setTimeout(updateMode, 1000); 
+            }
+            
+            updateMode();
+        });
+    </script>
+</body>
+</html>

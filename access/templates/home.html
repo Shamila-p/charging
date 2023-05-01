@@ -18,14 +18,16 @@
     }
     
     .circle {
-      width: 200px;
-      height: 200px;
+      width: 212px;
+      height: 212px;
       border-radius: 50%;
-      background-color: gray;
       margin: 0 10px;
       position: relative;
       z-index: 1;
+      background-color: #000000;
+      box-shadow: 0 3px 5px rgba(136, 136, 136, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
     }
+    
     
     .circle:first-child {
       margin-left: -80px; /* add negative margin to the left of the first circle */
@@ -44,9 +46,20 @@
       z-index: 2;
     }
     
-    .text h1 {
+    .text h1 a{
+      margin: 0;
+      font-size: 22px;
+      color: white;
+      text-decoration: none;
+
+    }
+
+    .text h1 a:hover{
       margin: 0;
       font-size: 24px;
+      color: rgb(77, 13, 160);
+      text-decoration: none;
+
     }
     
     .text p {
@@ -58,10 +71,47 @@
       position: absolute;
       top: 20px;
       right: 20px;
+      background-color: #000000;
+      color: rgb(255, 255, 255);
+      border: 1px solid white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      width: 69px;
+      text-decoration: none;
+    }
+
+    .unlink {
+      position: absolute;
+      top: 20px;
+      right: 100px;
+      background-color: #000000;
+      color: rgb(255, 255, 255);
+      border: 1px solid white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-right: 49px;
+      width: 90px;
+      text-decoration: none;
+    }
+
+    .unlink:hover {
+      background-color: black;
+      color: white;
     }
   </style>
 </head>
 <body>
+  <!-- <button><a href="/unlink-car" class="unlink">Unlink</a></button> -->
+  <form method="post" action="/unlink-car">
+    {%csrf_token%}<button class="unlink" type="submit">Unlink</form>
+ 
+  <button><a href="/logout"  class="logout">Logout</a></button>
+    
+  
   <div class="circles-container">
     <div class="circle">
       <div class="text">
@@ -75,11 +125,14 @@
     </div>
     <div class="circle">
       <div class="text">
-        <h1><a href="">Regeneration Graph</a></h1>
+        <h1><a href="/view-range-speed/{{car_id}}">Range and speed</a></h1>
+      </div>
+    </div>
+    <div class="circle">
+      <div class="text">
+        <h1><a href="/regeneration-graph/{{car_id}}">Regeneration Graph</a></h1>
       </div>
     </div>
   </div>
-  
-  <a href="#" class="logout">Logout</a>
 </body>
 </html>

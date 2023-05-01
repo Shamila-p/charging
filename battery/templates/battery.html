@@ -1,40 +1,106 @@
 <!DOCTYPE html>
+{%load static%}
+
 <html>
 <head>
     <title>Battery Information</title>
     <style>
-        /* Add your styles here */
-    </style>
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #battery-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            margin-top:50px;
+        }
+    
+    #battery-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 50%;
+        padding: 50px;
+        margin-left: 40px;
+        margin-top: 50px;
+
+    }
+    
+    #battery-details p {
+        margin: 10px 0;
+        font-size: 23px;
+        margin-top: 19px;
+
+    }
+
+    #battery-details p span {
+        font-size: 23px;
+
+    }
+    
+    
+    img {
+        width: 50%;
+        margin-right: 20px;
+        margin-left: -152px;
+
+    }
+    
+    /* Style battery info */
+    #battery-percentage, #battery-temperature {
+        font-weight: bold;
+        font-size: 10px;
+    }
+    
+    #battery-health {
+        color: yellow;
+    }
+    
+    #charging-state {
+        color: green;
+    }
+</style>
 </head>
 <body>
-    <div id="battery-info">
-        <p>Percentage Charge: <span id="battery-percentage">{{ battery_percentage }}</span></p>
-        <p>State of Health: <span id="battery-health">{{ battery_health }}</span></p>
-        <p>State of Charging: <span id="charging-state">{{ charging_state }}</span></p>
-        <p>Temperature: <span id="battery-temperature">{{ battery_temperature }}</span></p>
+    <div id="battery-container">
+        <img src="{% static 'resources/images/battery.jpg' %}" alt="Battery Image">
+        <div id="battery-details">
+            <p>Percentage Charge: <span id="battery-percentage">{{ battery_percentage }}</span></p>
+            <p>State of Health: <span id="battery-health">{{ battery_health }}</span></p>
+            <p>State of Charging: <span id="charging-state">{{ charging_state }}</span></p>
+            <p>Temperature: <span id="battery-temperature">{{ battery_temperature }}</span></p>
+        </div>
     </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var carId = "{{car_id}}"
+        function updateBatteryInfo() {
+            $.getJSON('/battery/' + carId , function(data) {
+                console.log(data)
+                $('#battery-percentage').text(data.percentage_charge + '%');
     
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            var car_id = car_id 
-        
-            function updateBatteryInfo() {
-                $.getJSON('/battery-details/' + car_id , function(data) {
-                    $('#battery-percentage').text(data.percentage_charge + '%');
-        
-                    $('#battery-health').text(data.state_of_health);
-        
-                    $('#charging-state').text(data.state_of_charging);
-        
-                    $('#battery-temperature').text(data.temperature + '°C');
-                });
-        
-                setTimeout(updateBatteryInfo, 1000); 
-            }
-        
-            updateBatteryInfo();
-        });
-    </script>
+                $('#battery-health').text(data.state_of_health);
+    
+                $('#charging-state').text(data.state_of_charging);
+    
+                $('#battery-temperature').text(data.temperature + '°C');
+            });
+    
+            setTimeout(updateBatteryInfo, 1000); 
+        }
+    
+        updateBatteryInfo();
+    });
+</script>
 </body>
 </html>

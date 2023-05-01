@@ -1,12 +1,15 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.models import auth
-
 from access.models import User
 from car.models import Car
 
 # Create your views here.
-
+def index(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
+        return render(request,'index.html')
 
 def signup(request):
     if request.method == 'GET':
@@ -32,7 +35,6 @@ def signup(request):
             return redirect('login')
         return redirect('signup')
 
-
 def login(request):
     if request.method == 'GET':
         if request.user.is_authenticated :
@@ -47,7 +49,7 @@ def login(request):
             return redirect('link_car')
         messages.error(request, 'Wrong credentials!!!')
         return redirect('login')
-
+    
 def home(request):
     if request.method == 'GET':
         if not request.user.is_authenticated :

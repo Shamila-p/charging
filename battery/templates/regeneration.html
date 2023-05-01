@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regeneration Graph</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        canvas {
+            width: 80%;
+            height: auto;
+            margin-top: auto;
+        }
+        @media screen and (min-width: 768px) {
+            /* for screens larger than 768px */
+            div {
+                width: 60%;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="width: 100%; max-width: 960px; margin: 0 auto;">
+        <canvas id="regeneration-chart"></canvas>
+    </div>
+
+    <script>
+        var ctx = document.getElementById('regeneration-chart').getContext('2d');
+        var chartData = {
+            labels: {{ labels|safe }},
+            datasets: [{
+                label: 'Battery Percentage',
+                data: {{ data|safe }},
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</body>
+</html>

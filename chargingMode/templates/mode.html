@@ -3,21 +3,132 @@
 <head>
     <title>charging Mode Information</title>
     <style>
-        /* Add your styles here */
+        .container {
+            display: flex;
+            background-color: black;
+            height: 100vh;
+          }
+          
+          .left-container {
+            background-image: url('your-image-url.jpg');
+            background-size: cover;
+            width: 50%;
+          }
+          
+          .right-container {
+            width: 50%;
+            padding: 50px;
+            color: white;
+          }
+          
+          h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+          }
+          
+          p {
+            font-size: 18px;
+          }
+          
     </style>
 </head>
 <body>
     <div id="battery-info">
-        <p> Mode of charging: <span id="charging-mode">{{ charging_mode }}</span></p>
+        
     </div>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            var car_id = car_id 
+            var car_id = "{{car_id}} "
         
             function updateMode() {
-                $.getJSON('/charging-mode-details/' + car_id , function(data) {
+                $.getJSON('/charging-mode/' + car_id , function(data) {
+                    $('#charging-mode').text(data.mode );
+                });
+        
+                setTimeout(updateMode, 1000); 
+            }
+        
+            updateMode();
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+{%load static%}
+<html>
+<head>
+    <title>charging Mode Information</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: black;
+
+        }
+        .container {
+            display: flex;
+          }
+          
+          .image-container {
+            flex: 1;
+          }
+          
+          .image-container img {
+            width: 100%;
+            height: auto;
+            margin-top: 100px;
+          }
+          
+          .text-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            padding: 20px;
+            color: white;
+            margin-top: -39px;
+          }
+          
+          .text-container h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-align: center;
+          }
+          
+          .text-container p {
+            font-size: 22px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #00ecff;
+          }
+          
+          
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+          <img src="{% static 'resources/images/mode.jpg' %}" alt="your-image-alt-text">
+        </div>
+        <div class="text-container">
+          <h1>Mode of Charging</h1>
+          <p id="charging-mode">{{ charging_mode }}</p>
+        </div>
+      </div>
+      
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var car_id = "{{car_id}} "
+        
+            function updateMode() {
+                $.getJSON('/charging-mode/' + car_id , function(data) {
                     $('#charging-mode').text(data.mode );
                 });
         
