@@ -1,0 +1,15 @@
+version: '3'
+services:
+  v2hsystem:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: v2hsystem
+    image: v2hsystem
+    restart: always
+    ports:
+      - "8000:8000"
+    # volumes:
+    #   - /var/log/v2hsystem:/var/log/v2hsystem
+    env_file:
+      - .env
