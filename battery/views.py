@@ -50,14 +50,26 @@ def battery_details(request, car_id):
 def battery(request,car_id):
     if request.method == 'GET':
         car = Car.objects.get(car_id=car_id)
-        battery=Battery.objects.get(car_id=car.id)
+        battery=Battery.objects.filter(car_id=car.id).first()
+        battery_percentage = 0
+        state_of_health = 0
+        state_of_charging = "not charging"
+        temperature = 0
+        
+        if battery:
+            battery_percentage = battery.battery_percentage
+            state_of_health = battery.state_of_health
+            state_of_charging = battery.state_of_charging
+            temperature = battery.temperature
         battery_info = {
-            'percentage_charge': battery.battery_percentage,
-            'state_of_health':battery. state_of_health,
-            'state_of_charging':battery.state_of_charging ,
-            'temperature': battery.temperature,
+                'percentage_charge': battery_percentage,
+                'state_of_health':state_of_health,
+                'state_of_charging':state_of_charging ,
+                'temperature': temperature,
         }
         return JsonResponse(battery_info)
+      
+
     if request.method== 'POST':
         print('post enter')
         if Car.objects.filter(car_id=car_id).exists():

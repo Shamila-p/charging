@@ -34,11 +34,19 @@ def charging_mode_details(request,car_id):
 def charging_mode(request,car_id):
     if request.method=='GET':
         car=Car.objects.get(car_id=car_id)
-        mode_of=ChargingMode.objects.get(car_id=car.id)
-        mode={
-            'charging_mode':mode_of.mode
+        mode_of=ChargingMode.objects.filter(car_id=car.id).first()
+        
+        charging_mode = "Not charging"
+        
+        if mode_of:
+            charging_mode=mode_of.mode
+        
+        mode = {
+            'charging_mode': charging_mode,
         }
+       
         return JsonResponse(mode)
+    
     if request.method=='POST':
         if Car.objects.filter(car_id=car_id).exists():
             car = Car.objects.get(car_id=car_id)

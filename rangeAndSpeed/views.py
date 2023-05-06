@@ -37,10 +37,18 @@ def view_range_speed(request,car_id):
 def range_speed(request,car_id):
     if request.method=='GET':
         car=Car.objects.get(car_id=car_id)
-        entry=RangeAndSpeed.objects.get(car_id=car.id)
-        context={
-            'range':entry.range,
-            'speed':entry.speed
+        range_and_speed=RangeAndSpeed.objects.filter(car_id=car.id).first()
+        
+        range= "-"
+        speed = "-"
+        
+        if range_and_speed:
+            range = range_and_speed.range
+            speed = range_and_speed.speed
+        
+        context = {
+            'range': range,
+            'speed': speed,
         }
         return JsonResponse(context)
     
