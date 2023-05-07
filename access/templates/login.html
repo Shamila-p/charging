@@ -146,7 +146,13 @@
 <body>
   <div class="container">
     <h2>Login </h2>
+    {%for message in messages%}
+    <div class="alert alert-danger" >
+        <span style="color:red;background-color:white;font-size: 20px;"> {{message}}</span>
+    </div>
+    {%endfor%}
     <form method="post">
+   
         {%csrf_token%}
       <div class="form-group">
         <label for="email">Email:</label>

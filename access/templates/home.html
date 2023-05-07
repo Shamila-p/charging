@@ -9,7 +9,10 @@
       font-size: 14px;
       color: white;
     }
-    
+    .row{
+      display: flex;
+      flex-direction: row;
+    }
     .circles-container {
       display: flex;
       justify-content: center;
@@ -105,12 +108,20 @@
   </style>
 </head>
 <body>
+  <div class="row">
+  <div>
+    <h3>Car Id :{{car_id}}</h3>
+  </div>
+  <div>
+    <form method="post" action="/unlink-car">
+      {%csrf_token%}<button class="unlink" type="submit">Unlink</form>
+   
+    <button><a href="/logout"  class="logout">Logout</a></button>
+      
+  </div>
+  </div>
   <!-- <button><a href="/unlink-car" class="unlink">Unlink</a></button> -->
-  <form method="post" action="/unlink-car">
-    {%csrf_token%}<button class="unlink" type="submit">Unlink</form>
  
-  <button><a href="/logout"  class="logout">Logout</a></button>
-    
   
   <div class="circles-container">
     <div class="circle">

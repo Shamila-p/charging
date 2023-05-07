@@ -13,8 +13,10 @@ import datetime
 
 
 # Create your views here.
+
 @csrf_exempt
 def battery_details(request, car_id):
+        print("enter")
         car = Car.objects.get(car_id=car_id)
         try:
             battery_data = Battery.objects.get(car_id=car.id)

@@ -54,9 +54,13 @@ def home(request):
     if request.method == 'GET':
         if not request.user.is_authenticated :
             return redirect('login')
-        car=Car.objects.get(user_id=request.user.id)
-        context={'car_id':car.car_id}
-        return render(request, 'home.html',context)
+        print("this",request.user.id)
+        
+        if Car.objects.filter(user_id=request.user.id).exists:
+            car=Car.objects.get(user_id=request.user.id)
+            context={'car_id':car.car_id}
+            return render(request, 'home.html',context)
+        return redirect('link_car')
     
 def logout(request):
     auth.logout(request)
