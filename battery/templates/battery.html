@@ -86,7 +86,6 @@
         var carId = "{{car_id}}"
         function updateBatteryInfo() {
             $.getJSON('/battery/' + carId , function(data) {
-                console.log(data)
                 $('#battery-percentage').text(data.percentage_charge + '%');
     
                 $('#battery-health').text(data.state_of_health);

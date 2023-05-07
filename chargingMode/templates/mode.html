@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>charging Mode Information</title>
@@ -53,8 +53,8 @@
             updateMode();
         });
     </script>
-</body>
-</html>
+</body> 
+ </html> -->
 
 <!DOCTYPE html>
 {%load static%}
@@ -129,7 +129,8 @@
         
             function updateMode() {
                 $.getJSON('/charging-mode/' + car_id , function(data) {
-                    $('#charging-mode').text(data.mode );
+
+                    $('#charging-mode').text(data.charging_mode);
                 });
         
                 setTimeout(updateMode, 1000); 
