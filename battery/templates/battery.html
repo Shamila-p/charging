@@ -77,12 +77,10 @@
     <div id="battery-container">
         <img src="{% static 'resources/images/battery.jpg' %}" alt="Battery Image">
         <div id="battery-details">
-            {%if anything or above or below%}
             <p>Percentage Charge: <span id="battery-percentage">{{ battery_percentage }}</span></p>
             <p>State of Health: <span id="battery-health">{{ battery_health }}</span></p>
             <p>State of Charging: <span id="charging-state">{{ charging_state }}</span></p>
             <p>Temperature: <span id="battery-temperature">{{ battery_temperature }}</span></p>
-            {%endif%}
         </div>
     </div>
     {% if above is True %}
