@@ -67,18 +67,37 @@
     #charging-state {
         color: green;
     }
+
 </style>
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js">
+  </script>
 </head>
 <body>
     <div id="battery-container">
         <img src="{% static 'resources/images/battery.jpg' %}" alt="Battery Image">
         <div id="battery-details">
+            {%if anything or above or below%}
             <p>Percentage Charge: <span id="battery-percentage">{{ battery_percentage }}</span></p>
             <p>State of Health: <span id="battery-health">{{ battery_health }}</span></p>
             <p>State of Charging: <span id="charging-state">{{ charging_state }}</span></p>
             <p>Temperature: <span id="battery-temperature">{{ battery_temperature }}</span></p>
+            {%endif%}
         </div>
     </div>
+    {% if above is True %}
+  <script>
+    swal("Battery Alert", "Battery is greater than 80%. Switch your charging mode", "warning");
+  </script>
+{% endif %}
+
+{% if below is True %}
+  <script>
+    swal("Battery Alert", "Battery is less than 30%. Switch your charging mode", "error");
+  </script>
+{% endif %}
+
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
